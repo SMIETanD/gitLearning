@@ -1,0 +1,390 @@
+程序的执行顺序：
+	从上往下，从左到右
+	加载延迟：window.onload(){...}
+面对对象编程：
+	获取对象->调用对象的属性 | 调用对象的方法
+	对象：属性(特征)和方法(行为)
+js脚本的位置：
+	内联，内部，外部
+js特效：
+	定义事件（时机+行为） -> 事件触发（行为发生） -> 事件能重复发生
+
+js变量和语法：
+	注释: // , /*  */
+	js变量：
+		整型，浮点，布尔
+		字符串:
+		数组: Array('..','..',...) or ['...','...',....]
+		对象：object
+			js对象   jsobj = new Object(); jsobject.name = user; jsobj.say = function(){ ..... }
+			json对象 jsonobj = {'name':'value','name1':'value1',....}
+			this对象 代表本对象
+			dom对象 eleobj = document;
+		函数：
+			定义：function 函数名(){...} | 匿名函数：函数名 = function(){...}
+			调用： 函数名();
+		NaN: not a number
+		null: 空值
+		undefined：未定义
+	js变量作用域：
+		函数里面的带var声明的变量局部变量，其余（未用var声明的变量）都是全局变量
+
+	变量类型测试：
+		typeof( 变量名 ) 返回变量的类型 number,string,object(数组,对象,null),boolean,undefined
+		arr instanceof Array  判断arr是否是从Array里实例化出来的，返回true or false
+		arr.constructor; 查询arr的构造函数
+	顶级全局方法：   全局对象Global,省略
+		typeof()
+		parseInt()   强制转整型
+		parseFloat() 强制转浮点型
+		eval()       执行字符串表达式 eval('a=1+1'); -> 2
+		Number()     
+		String()	 
+		Boolean()
+	变量的类型转换：
+		整型->字符串：
+			String(num)
+			+
+		字符串->整型：
+			paseInt(str)
+			Number(str)
+		所有类型->布尔类型：
+			Boolean(allType)   or   !!value
+			为false的情况：字符串(""),整型(0),浮点(0.0),null,NaN,undefined
+	json字符串转json对象：
+		v = "{'age':'10','name':'james'}" json字符串
+		eval('('+v+')') -> 转成对象
+	变量运算符：
+		in               '属性' in obj    判断属性是不是在对象身上,判断数组中的下标是否在数组上       
+		instanceof 		 arr instanceof Array; 判断arr是否为Array实例化出来的
+		delete           delete 变量;   删除变量(但不能删除局部变量)
+	js语法：
+		if
+		switch:   
+			switch(变量)
+			{	case 1: .....break;
+				case 2: .....break;
+				...
+				default: ....
+					break;
+			}
+		while 
+		for
+		forIn 遍历属性
+			for(i in obj){
+				document.write('<h1>'+obj[i]+'</h1>')
+			}
+	js函数：
+		实现代码的复用，减少代码冗余。
+			参数与与声明不符合时，依然可以运行，不会报错。
+			函数可以设置默认参数：function functionName(k=1,i=5){	...		}
+		function functionName(){	....	}
+		匿名函数： say = function(){	...		}
+		返回：return 返回值;
+	js弹出框：
+		警告框： alert();
+		确认框： confirm(); 返回值true or false
+		提示框： prompt();  返回输入的内容
+	js对象：
+		js内置对象，js事件对象（事件类型），bom对象，dom对象
+	js内置对象：
+		数学：
+			对象：Math
+			属性：Math.PI
+			方法：Math.max(),Math.min(),Math.random(),Math.ceil() 向上取整,Math.floor() 向下取整,Math.round() 四舍五入,只保留整数
+		日期：
+			对象：date = new Date();
+			方法：getFullYear(),getMonth(),getDate(),getDay()星期,getHours(),getMinutes(),getSeconds()
+		定时器： 循环执行（返回定时器的序列号）
+			设置定时器：setInterval(function(){},times);   times单位毫秒   obj = setInterval(function(){},1000)
+			清除定时器：clearInterval(定时器对象);                         clearInterval(obj);
+		超时器：单次执行
+			设置超时器：setTimeOut(function(){},times)                     bj = setTimeOut(function(){},1000)
+			清除超时器：clearTimeOut(obj)                                  clearTimeOut(obj);
+		字符串：
+			对象：arr = new String();
+			属性：length
+			方法：indexOf(str)  检索某个字符在字符串中的位置      lastIndexOf(str)
+				  str.substr(start,num)     字符串截取
+				  str.slice(start,end)      字符串截取,不包含end,返回截取的字符串
+				  toUpperCase()        转大写
+				  toLowerCase()        转小写
+				参数可以为字符串或者正则表达式：
+				  split(reg)                分割字符串,reg分割符
+				  search(reg)               检索子字符串在字符串中的位置,找到则返回子字符串首字母位置,反之返回-1      
+				  match(reg)                检索子字符串在字符串，找到返回匹配的子字符串，反之返回null
+				  str.replace(reg1,reg2)    字符串替换,返回新的字符串    reg1被替换值 reg2替换值
+		数组：
+			对象：arr = new Array();
+			属性：length
+			方法：
+				join(ref)    把数组连接成字符串     ref:连接符
+				pop()        尾弹出                 返回数组最后一个元素	 原数组发生变化
+				push()       尾插入    				返回数组新的长度	 原数组发生变化
+				shift()      首弹出					返回弹出的元素	 原数组发生变化
+				unshift()    首插入					返回数组新的长度	 原数组发生变化
+				reverse()	 反转                   返回新数组,不改变原数组
+				concat(arr)	 数组合并
+				slice(start,end)  数组截取,不包含end,原数组不发生变化
+				sort(show)       排序更改原数组,默认字典序排序      
+								 function show(a,b){  return a-b;//升序  return b-a;//降序}
+				splice(strat,num)		  数组截取,原数组发生变化
+
+ 		++t与t++区别：
+ 			++t: 先运算后赋值
+ 			t++: 先赋值后运算
+
+ 		js运算符：
+ 			算数运算符：+,-,*,/,%
+ 			比较运算符：>,<,>=,<=,!=
+ 			逻辑运算符：&&,||,!
+ 		js正则表达式：（regExp）
+ 			直接量/regExp对象：
+ 				/pattern/attributes
+ 				new RegExp(pattern,attributes)
+ 			对象方法：
+ 				complie()          编译正则表达式。
+ 				exec()			   检索字符串中指定的值。返回找到的值，并确定其位置。
+ 				test(str)          检索字符串中指定的值。返回 true 或 false。
+			转义符： \
+			修饰符：
+ 					i 忽略大小写
+ 					g 全局查找
+ 					m 多行查找
+			方括号：
+ 					[abc]
+ 					[^abc]
+ 					[0-9]
+ 					[a-z]  
+ 					[A-Z]
+ 					(ab)|(abc)
+			元字符：
+ 					.   除了换行和结束符之外的任意字符
+ 					\w  任意字母,数字,下划线
+ 					\W
+ 					\d  任意数字
+ 					\D
+ 					\b  单词边界
+ 					\B
+ 					\s  任意空白字符
+ 					\S
+ 					\n  换行
+			量词：
+ 					*        任意多次
+ 					+        至少1次
+ 					？		 0或1次
+ 					{x}      x次
+ 					{x,}     至少x   
+ 					{x,y}    x-y
+ 					^n       以n开头
+ 					n&       以n结尾
+ 					?=n      匹配任何其后紧跟字符为n的字符串
+ 					?!=      匹配任何其后没有紧跟字符为n的字符串
+ 			支持正则表达式的String对象方法：
+ 				match()
+ 				search()
+ 				replace()
+ 				split()
+ 			实例
+ 				匹配139*****的手机号码：
+ 					match(/^139\d{8}/ig) 
+ 				匹配邮箱格式：1136193236@qq.com
+ 					match(/^\w+@\w+\.\w+&/ig)
+ 				一些高级替换：2017/05/11    --->   2017-05-11
+ 					向后引用：replace(/(\d+)\/(\d+)\/(\d+)/ig,'$1-$2-$3')
+ 	js事件对象：
+ 			js特效：
+ 				事件触发 -> 属性改变 | 样式改变
+ 			绑定事件：             不详细
+ 				标签身上
+ 				js代码中
+ 			事件：
+ 				鼠标事件：
+ 					onclick       点击
+ 					ondbclick     双击
+ 					onmouseenter  移入
+ 					onmouseleave  移出
+ 					onousemove	  移动(获取鼠标得坐标)
+ 				键盘事件： 针对文档(document) event.keyCode
+ 					onkeydown    键盘按下
+ 					onkeyup	  键盘弹起          ---->实现预览效果
+ 					onkeypress   按下后弹起
+ 			获取高宽：
+ 				可见高宽：
+ 					document.documentElement.clientWidth
+ 					document.documentElement.clientHeight
+ 				屏幕总高度：
+ 					document.documentElement.scrollHeight
+ 					documrnt.documentElement.scrollWidth
+ 				滚动的高度：
+ 					考虑刘浏览器内核兼容：
+ 						user = navigator.userAgent; 
+ 						if(user.match(/chrome/ig))
+ 							scroll = document.body.scrollTop;
+ 						else
+ 							scroll = document.documentElement.scrollTop;
+ 				(图片下方出现几像素的空白间隙,解决方法：给img设置样式 display：block;)
+ 				表单事件：
+ 					onfocus
+ 					onblur
+ 					onchange
+ 					onselect
+ 					onsubmit
+ 					onreset
+ 				其他事件：
+ 					onload            -->网页/图片是否加载完毕
+ 					onerror             图片加载失败
+ 					onresize			调整窗口大小时触发
+ 					onscroll
+ 					回到顶部实例：                  ??????????????????????????????????????
+ 						锚点：
+ 						利用滚动高度：
+ 							document.documentElement.scrollTop
+ 							document.body.scrollTop(chrome)
+ 				事件方法：
+ 					select()
+ 					focus()		  获取焦点
+ 					blur()        失去焦点
+ 					click()		  点击
+ 					submit()	  提交
+ 					reset()       重置
+ 				阻止标签的默认行为：
+ 					自带默认行为的标签：
+ 						<a href='...'></a>
+ 						<form action='...'></form>
+ 					return false;
+ 					javascript:
+ 	BOM对象(browse object model)                                                      *****
+ 		window对象：
+ 			属性：
+ 				frames  //窗口数组
+ 				top 	//顶级窗口
+ 			方法：
+ 				alert()
+ 				confirm()
+ 				prompt()
+ 				setInterval()
+ 				clearInterval()
+ 				setTimeOut()
+ 				clearTimeOut()
+ 		navigator对象：
+ 			属性：
+ 				userAgent
+ 				实例：辨别浏览器
+ 					browseArr = winsow.userAgent.match(/chrome|firefox|trident/i);
+ 		screen对象：
+ 			属性：(分辨率)
+ 				width
+ 				height
+ 				availWidth   //有效的宽
+ 				availHeight  //有效的高
+ 				实例：
+ 					根据分辨率加载不同的样式
+ 		history对象：
+ 			方法：
+ 				back()       //后退一个历史  ==   go(-1)
+ 				forward()    //前进一个历史  ==   go(1)
+ 				go()         //跳转到
+ 		location对象：地址栏
+ 			location 拿到地址栏的完全地址
+ 			属性：
+ 				hash    	// 	获取地址栏的锚点
+ 				host    	// 获取地址栏主机名
+ 				href    	// 拿到地址栏的完全地址(url地址)
+ 				pathname	// 页面目录   
+ 				protocol	// 访问协议   http:
+ 				search  	// 参数
+ 			方法：
+ 				reload()    刷新地址栏：location.reload();
+ 	DOM对象：                                                                              *****
+ 		基础对象：
+ 			document
+ 			document.documentElement  (类似于根html)
+ 			document.title
+ 			document.head
+ 			document.body
+ 		直接获取dom元素对象集合：
+ 			document.links
+ 			document.images
+ 			document.forms
+ 			document.anchors  锚点：a标签的name属性
+ 			tableObj.rows
+ 			tableRowObj.cells
+ 			selectObj.options  (selectObj.selectedIndex 获取下拉菜单中第几个菜单被选中)
+ 		获取元素对象的方法:
+ 			document.getElementById()
+ 			document.getElementsByTagName()
+ 			document.getElementsByClassName()
+ 			document.getElementsByName()    -------- 根据标签的name属性
+ 		元素对象标准属性：
+ 			获取/设置标准属性：obj.属性 | getAttribute(),setAttribute()
+ 			obj.id
+ 			obj.class
+ 			obj.title
+ 			obj.style
+ 			标签拥有的属性 
+ 		元素对象非标准属性：
+ 			获取非标准属性：
+ 				getAttribute(属性名)
+ 			设置非准属性：
+ 				setAttribute(属性名,属性值)
+ 		元素对象的js属性：
+ 			obj.tagName                  标签名
+ 			obj.innerHTML				 标签内部所有内容 
+ 			obj.outerHTML			     标签的全部内容<h1>hfjk</h1>
+ 			obj.textContent	             标签内部文本内容
+ 		遍历集合对象：
+ 			obj[i]
+ 			this
+ 		DOM 实例：
+ 			移入移出特效
+ 			循环点击特效
+ 			点击换行号
+ 			点击标题切换内容
+ 			多选反选和全不选
+ 			选水果
+ 	Ajax无刷新技术： 使网页实现异步更新                                                       *****
+ 		ajax异步通讯技术：XMLHttpRequest对象(现代浏览器),ActiveX对象(老版本IE5，IE6)
+ 			对象：
+ 				XMLHttpRequest对象(现代浏览器),ActiveX对象(老版本IE5，IE6)
+ 				var xmlhttp;
+ 				if(window.XMLHttpRequest)
+ 				{
+ 						xmlhttp = new XMLHttpRequest();
+ 				}
+ 				else
+ 				{
+ 					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+ 				}
+ 			属性：
+ 				readyState
+ 					0: 请求未初始化
+ 					1: 服务器连接已建立
+ 					2: 请求已接收
+ 					3: 请求处理中
+ 					4: 请求已完成，且响应已就绪
+ 				status
+ 					200: "OK"
+ 					404: 未找到页面
+ 				responseText
+ 			方法：
+ 				open(method,url,async)
+ 					method:请求的类型 
+ 						get ：url中和携带少量信息
+ 						post ：通过send(string)函数中的参数携带信息
+ 					url:文件在服务器上的位置
+ 					async：
+ 						true（异步）  无需等待服务器的响应，在等待服务器响应时执行其他脚本，当响应就绪后对响应进行处理
+ 					 	false（同步） 等到服务器响应就绪后下开始执行，如果服务器繁忙或缓慢，该任务直接挂起或停止
+ 				send(string)
+ 					string：仅用于 POST 请求
+ 				setRequestHeader(header,value) 类似于表单一样提交数据
+ 					header: 规定头的名称
+ 					value: 规定头的值
+ 			事件：
+ 				onreadystatechange
+ 				xmlhttp.onreadystatechange = function(){
+ 					if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+ 						successfull body;
+ 					}
+ 				}
